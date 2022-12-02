@@ -3,7 +3,7 @@ const router = express.Router();
 const Userregister = require("../model/registers");
 const otpGenerator = require('otp-generator')
 var nodemailer = require('nodemailer');
-const client = require('twilio')('AC36041df1df159f3a3fdf2fe17508f9ad', '53d002ec487c795057d60475d43bf19d')
+const client = require('twilio')('', '')
 
 
 router.get("/", (req, res) => {
