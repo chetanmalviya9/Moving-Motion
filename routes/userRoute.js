@@ -8,7 +8,7 @@ const RequestedOrder = require('../model/requestedOrder')
 const AcceptedOrder = require('../model/AcceptedOrder')
 const indexRouter = require('../controller/indexController');
 const { default: mongoose } = require('mongoose');
-const client = require('twilio')('AC36041df1df159f3a3fdf2fe17508f9ad', '53d002ec487c795057d60475d43bf19d')
+const client = require('twilio')('', '')
 
 
 
