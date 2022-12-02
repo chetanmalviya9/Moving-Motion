@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="/bootstrap/style.css">
+
+  <title>Moving Motions</title>
+</head>
+
+<body class="container-fluid">
+  <!-- navbar starts -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-white">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img class="col-md-8" src="../images/logo.png" id="logo" alt="" width="30" height="24">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <%Mobile%>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user/contact">Contact Us</a>
+              </li>
+            </ul>
+            <div class="dropdown" style="font-family: candara;">
+
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Profile
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/user/userList">My-Profile</a></li>
+                <li><a class="dropdown-item" href="/user/order">my order</a></li>
+                <li><a class="dropdown-item" href="/user/orderStatus">Order Status</a></li>
+              </ul>
+            </div>
+
+          </div>
+      </div>
+
+    </nav>
+  </header>
+  <!-- navbar ends -->
+  <div class="row">
+    <div class="col-md-6" id="buttons">
+      <button type="button" id="book" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#booking">Book
+        a vehicle</button>
+      <button type="button" id="attach" class="btn btn-dark btn-lg" data-bs-toggle="modal"
+        data-bs-target="#attaching1">Attach a vehicle</button>
+    </div>
+    <div class=" col-md-6" id="image">
+      <img src="../images/undraw_delivery_truck_vt6p.png" alt="" height="400px" width="700px">
+    </div>
+  </div>
+  <!-- modal booking -->
+  <div class="modal fade" id="booking" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="wrapper">
+          <div class="logo">
+            <img src="../images/logo.png" alt="">
+          </div>
+          <div class="text-center mt-4 name">
+            Book a Vehicle
+          </div>
+          <form action="/user/" method="post" class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+              <span class="far fa-user"></span>
+              <input type="text" name="pickuplocation" id="pickuplocation" placeholder="Enter Pickup Location">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="tel" name="pickUpcontact" id="pickupcontact" placeholder="Pickup Contact">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="text" name="deliverylocation" id="destlocation" placeholder="Enter Destination Location">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="tel" name="destinationcontact" id="destcontact" placeholder="Destination Contact">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="date" name="pickupdate" id="when" placeholder="When">
+            </div>
+
+            <div class="text-center fs-6">
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success">proceed</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal booking ends -->
+  <!-- modal attaching1 -->
+  <div class="modal fade" id="attaching1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="wrapper">
+          <div class="logo">
+            <img src="../images/logo.png" alt="">
+          </div>
+          <div class="text-center mt-4 name">
+            Attach my Vehicle
+          </div>
+          <form action="/user/vehicleAttach1" method="post" class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+              <span class="far fa-user"></span>
+              <input type="text" name="ownerName" id="owner" placeholder="Enter Owner Name">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="text" name="driverName" id="driver" placeholder="Enter Driver Name">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="text" name="vehicleNumber" id="vehiclenumber" placeholder="Enter Vehicle Number">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <input type="number" name="adharNumber" id="adharnumber" placeholder="Enter Adhar Number">
+            </div>
+            <div class="form-field d-flex align-items-center">
+              <span class="fas fa-key"></span>
+              <div>
+                  <select name="vehicleType" class="box" style="width:100%" required>
+                  <option name="vehicleType" class="box">select your vehicle</option>
+                  <option name="vehicleType" class="box">Tata sumo</option>
+                  <option name="vehicleType" class="box">Tata intra</option>
+                  <option name="vehicleType" class="box">Tata ace</option>
+                  <option name="vehicleType" class="box">Tata legend</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-center fs-6">
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-dark">next</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal attaching1 ends -->
+
+  <!-- modal attaching2 -->
+  <!-- 
+  <div class="modal fade" id="attaching2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="wrapper">
+          <div class="logo">
+            <img src="images/logo.png" alt="">
+          </div>
+          <div class="text-center mt-4 name">
+            Attach my Vehicle
+          </div>
+          <form class="p-3 mt-3">
+            <div class="mb-3">
+              <label for="formFile" class="form-label">License</label>
+              <input class="form-control" type="file" id="license" name="license">
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Insurance</label>
+              <input class="form-control" type="file" id="Insurance" name="Insurance">
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">RC</label>
+              <input class="form-control" type="file" id="RC" name="RC">
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">PUC</label>
+              <input class="form-control" type="file" id="PUC" name="PUC">
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Fitness</label>
+              <input class="form-control" type="file" id="Fitness" name="Fitness">
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Driver Photo</label>
+              <input class="form-control" type="file" id="driverphoto" name="driverphoto">
+            </div>
+          </form>
+          <div class="text-center fs-6">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark"><a href="home.html">proceed</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- modal attaching2 ends -->
+  <!-- footer starts -->
+  <div class="container">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-contact-center border-bottom pb-3 mb-3">
+        <li class="nav-item">
+          <a href="#" class="nav-link px-4 s-5 text-muted">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-4 s-5 text-muted">Features</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-4 s-5 text-muted">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-4 s-5 text-muted">FAQs</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-4 s-5 text-muted">About</a>
+        </li>
+      </ul>
+      <p class="text-center text-muted">&copy; 2022 Moving Motions,&trade;</p>
+    </footer>
+  </div>
+  <!-- footer ends -->
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attach a Vehicle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- <script src="vehicleAttachValid.js"></script> -->
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img class="col-md-8" src="../images/logo.png" id="logo" alt="" width="30" height="24">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <%Mobile%>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/user/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user/about">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user/contact">Contact Us</a>
+                            </li>
+                        </ul>
+                        <!-- <button type="button" class="btn btn-outline-dark" ></button> -->
+
+
+                        <div class="dropdown" style="font-family: candara;">
+
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Profile
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/user/userList">View</a></li>
+                                <li><a class="dropdown-item" href="/user/order">my order</a></li>
+                                <li><a class="dropdown-item" href="/user/orderStatus">Order Status</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+            </div>
+
+        </nav>
+    </header>
+    <section class="attach2" id="attach">
+        <%Mobile%>
+            <div class="containerdiv">
+                <div id="outerdiv">
+                    <form action="/user/vehicleAttach2" method="post" enctype="multipart/form-data">
+                        <label id="box">Licence</label>
+                        <input type="file" name="Image" class="box" required>
+                        <label id="box">Insurance</label>
+                        <input type="file" name="Image" class="box">
+                        <label id="box">RC</label>
+                        <input type="file" name="Image" class="box">
+                        <label id="box">PUC</label>
+                        <input type="file" name="Image" class="box">
+                        <label id="box">Fitness</label>
+                        <input type="file" name="Image" class="box">
+                        <label id="box">Driver Photo</label>
+                        <input type="file" name="Image" class="box">
+
+                        <input type="submit" onclick="validation()" id="btn">
+                    </form>
+                </div>
+            </div>
+
+
+
+    </section>
+    <!-- footer starts -->
+    <section class="footer">
+        <div class="box-container">
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="home.html">home</a>
+                <a href="about.html">about</a>
+                <a href="Quotation.html">Quotation</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#">my account</a>
+                <a href="#">my booking</a>
+                <a href="Profile.html">my profile</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#">+91-7610-188-542</a>
+                <a href="#">mariyamburhanuddin4@gmail.com</a>
+                <a href="#">Indore, india - 452001</a>
+                <!-- <img src="images/payment.png" alt=""> -->
+            </div>
+
+        </div>
+
+        <div class="credit"> created by <span> Team Bug Finders</span> | all rights reserved </div>
+
+    </section>
+</body>
+
+</html>
