@@ -4,10 +4,7 @@ const Userregister = require("../model/registers");
 const otpGenerator = require('otp-generator')
 var nodemailer = require('nodemailer');
 const client = require('twilio')('', '')
-const { check, validationResult } = require('express-validator');
-const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
-// const flash = require('connect-flash');
+
 
 router.get("/", (req, res) => {
     res.render("index");
