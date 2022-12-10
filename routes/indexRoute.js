@@ -9,26 +9,39 @@ const client = require('twilio')('', '')
 router.get("/", (req, res) => {
     res.render("index");
 });
+
 router.get("/login", (req, res) => {
     res.render("login");
 });
+
 // signup page posting data in mongodb
 router.get("/signup", (req, res) => {
     res.render("signup");
 });
+
 router.post("/signup", (req, res) => {
+
+    // const errors = validationResult(req)
+    // if(!errors.isEmpty()) {
+    //     // return res.status(422).jsonp(errors.array())
+    //     const alert = errors.array()
+    //     res.render('index', {
+    //         alert
+    //     })
+    // }
 
     bodyUser = req.body.user
     pass = req.body.Password;
     cpass = req.body.CPassword;
     bodyEmail = req.body.email;
     bodyMobile = req.body.mobile;
+
     generatedOtp = otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
     console.log(generatedOtp);
-    sendMsg(generatedOtp,bodyMobile);
-    
+    sendMsg(generatedOtp, bodyMobile);
+
     res.status(201).render("otp");
-    
+
 });
 function sendMsg(msg, number) {
     client.messages.create({
@@ -56,19 +69,20 @@ function sendMsg(msg, number) {
 
 // transporter.sendMail(mailOptions, function (error, info) {
 //     if (error) {
-    //         console.log(error);
-    //     } else {
+//         console.log(error);
+//     } else {
 //         console.log('Email sent: ' + info.response);
 //     }
 // });
 //-------------------------------------------------------
+
 router.post("/otp", async (req, res) => {
-    
+
     const otp = req.body.t1 + req.body.t2 + req.body.t3 + req.body.t4;
     console.log(otp)
     if (otp == generatedOtp) {
         try {
-            console.log("hii")
+            // console.log("hii")
             if (pass === cpass) {
                 const regUser = new Userregister({
                     user: bodyUser,
@@ -83,20 +97,17 @@ router.post("/otp", async (req, res) => {
             }
 
             else {
-                res.send("password not matched");
+                res.send("<h1>password not matched</h1>");
             }
         } catch (error) {
             res.status(400).send("<h1>Something Went Wrong..........</h1>");
         }
-        
+
     }
     else {
-        res.send("Otp NOT matched");
+        res.send("<h1>Otp NOT matched</h1>");
     }
 })
-
-//msg91
-
 
 /////signup finished/////
 
@@ -105,14 +116,13 @@ router.post("/login", async (req, res) => {
     try {
         const email = req.body.email;
         const pass = req.body.Password;
-        
+
         const useremail = await Userregister.findOne({ email: email });
-        //  res.send(useremail);
+
         Mobile = useremail.mobile
         if (useremail.Password === pass) {
-            // useremail=new usermail
-            
-            res.status(201).render("user-module/index",{Mobile});
+
+            res.status(201).render("user-module/index", { Mobile });
         }
         else {
             res.send("<h1>Details not matched</h1>");
@@ -128,6 +138,7 @@ router.post("/login", async (req, res) => {
 router.get("/otp", (req, res) => {
     res.render("otp");
 });
+
 router.get("/submit", (req, res) => {
     res.render("submit");
 });

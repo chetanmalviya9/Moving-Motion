@@ -11,12 +11,12 @@ const deliverySchema = new mongoose.Schema({
     pickUpcontact: {
         type: Number,
         required: true,
-        
+
     },
     deliverylocation: {
         type: String,
         required: true,
-    
+
     },
     destinationcontact: {
         type: Number,
@@ -26,9 +26,9 @@ const deliverySchema = new mongoose.Schema({
     pickupdate: {
         type: Date,
         required: true,
-    
+
     },
-    mobile:{
+    mobile: {
         type: String,
         required: true,
     }

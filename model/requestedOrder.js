@@ -4,7 +4,7 @@ const RequestedSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    driverNum:{
+    driverNum: {
         type: String,
         required: true
     },
@@ -12,15 +12,15 @@ const RequestedSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    vehicleNumber:{
+    vehicleNumber: {
         type: String,
         required: true
     },
-    vehicleType:{
+    vehicleType: {
         type: String,
         required: true
     },
-    userMob:{
+    userMob: {
         type: String,
         required: true
     }
