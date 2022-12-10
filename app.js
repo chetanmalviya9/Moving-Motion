@@ -21,6 +21,7 @@ const staticFilePath = path.join(__dirname, "public");
 app.use(express.static(staticFilePath));
 const uploadPath = path.join(__dirname, "Uploadimages");
 app.use(express.static(uploadPath));
+
 app.use("/user", userRouter);
 
 //http://localhost:3000/

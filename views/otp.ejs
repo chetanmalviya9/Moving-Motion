@@ -20,7 +20,7 @@
         width: 400px;
         padding-top: 5%;
     }
-    
+
     .inputs input {
         width: 40px;
         height: 40px
@@ -31,13 +31,12 @@
         border: 2px solid #253d5b;
     }
 
-    .validate {   
+    .validate {
         border-radius: 20px;
         height: 40px;
         border: 1px solid #253d5b;
         width: 140px
     }
-   
 </style>
 </head>
 
@@ -57,27 +56,32 @@
                                     <h6>Please enter the one time password <br> to verify your account</h6>
                                     <br>
                                     <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2" required>
-                                        <input type="text"   id="first"class="m-2 text-center form-control rounded" 
-                                            maxlength="1" onkeyup ="clickEvent(this,'second')" autocomplete="off" required name="t1">
+                                        <input type="text" id="first" class="m-2 text-center form-control rounded"
+                                            maxlength="1" onkeyup="clickEvent(this,'second')" autocomplete="off"
+                                            required name="t1">
 
-                                        <input type="text" id="second" class="m-2 text-center form-control rounded"  
-                                            maxlength="1" onkeyup="clickEvent(this,'third')" autocomplete="off" required name="t2">
-                                        <input  type="text" id="third" class="m-2 text-center form-control rounded"
-                                            maxlength="1" onkeyup="clickEvent(this,'fourth')" autocomplete="off" required name="t3">
-                                        <input  type="text" id="fourth" class="m-2 text-center form-control rounded"
+                                        <input type="text" id="second" class="m-2 text-center form-control rounded"
+                                            maxlength="1" onkeyup="clickEvent(this,'third')" autocomplete="off" required
+                                            name="t2">
+                                        <input type="text" id="third" class="m-2 text-center form-control rounded"
+                                            maxlength="1" onkeyup="clickEvent(this,'fourth')" autocomplete="off"
+                                            required name="t3">
+                                        <input type="text" id="fourth" class="m-2 text-center form-control rounded"
                                             maxlength="1" autocomplete="off" required name="t4">
                                     </div>
-                                   
-                                  <br><br>
-                                    <div class="text-center">
-                                        <a href="/user/" class="btn btn-default" value="back" style="background-color: #253d5b; color: white;">Back</a>   
-
-                                        <!-- <input type="button" class="btn btn-default" value="cancle" style="background-color: #253d5b; color: white;">     -->
-                                    <!-- <a href="/submit"  id= "btnid" class="btn" onclick="myf()" class="bg-dark" style="background-color: #253d5b; color:white;">Varify</a> -->
-                                    <input type="submit" class=" btn Register" value="Verify" onclick=" myf()" style="background-color: #253d5b;color:white"></a>
 
                                     <br><br>
-                                </div>
+                                    <div class="text-center">
+                                        <a href="/user/" class="btn btn-default" value="back"
+                                            style="background-color: #253d5b; color: white;">Back</a>
+
+                                        <!-- <input type="button" class="btn btn-default" value="cancle" style="background-color: #253d5b; color: white;">     -->
+                                        <!-- <a href="/submit"  id= "btnid" class="btn" onclick="myf()" class="bg-dark" style="background-color: #253d5b; color:white;">Varify</a> -->
+                                        <input type="submit" class=" btn Register" value="Verify" onclick=" myf()"
+                                            style="background-color: #253d5b;color:white"></a>
+
+                                        <br><br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +90,7 @@
             </form>
         </div>
     </div>
-<!-- 
+    <!-- 
     <script>
         //  document.addEventListener(function(event) {
         //     function OTPInput() {

@@ -8,7 +8,7 @@ const RequestedOrder = require('../model/requestedOrder')
 const AcceptedOrder = require('../model/AcceptedOrder')
 const indexRouter = require('../controller/indexController');
 const { default: mongoose } = require('mongoose');
-const client = require('twilio')('AC36041df1df159f3a3fdf2fe17508f9ad', '53d002ec487c795057d60475d43bf19d')
+const client = require('twilio')('AC36041df1df159f3a3fdf2fe17508f9ad', 'a95716d1303ddb8f9ec8c4d77328dc6e')
 
 
 
@@ -38,11 +38,11 @@ router.post("/", async (req, res) => {
             res.status(201).render("user-module/bookingStatus");
         }
         else {
-            console.log("Invalid details about delivery address");
+            console.log("<h1>Invalid details about delivery address</h1>");
         }
     }
     catch (error) {
-        
+
         res.status(400).send("<h1>Something Went Wrong..........</h1>");
     }
 });
@@ -51,15 +51,14 @@ router.get("/about", indexRouter.aboutPage);
 
 router.get("/contact", indexRouter.contactPage);
 
-router.get("/Quotaion", indexRouter.QuotationPage);
-
 router.get("/services", indexRouter.ServicePage);
 
 router.get("/vehicleAttach1", indexRouter.VehicleAttach);
 router.post("/vehicleAttach1", (req, res) => {
-    console.log(Mobile)
+    // console.log(Mobile)
     ownername = req.body.ownerName
     drivername = req.body.driverName;
+
     aadharnumber = req.body.adharNumber;
     vehiclenumber = req.body.vehicleNumber;
     vehicletype = req.body.vehicleType;
@@ -72,7 +71,7 @@ var str = ''
 var storage = multer.diskStorage(
     {
         destination: function (request, response, callback) {
-            
+
             callback(null, './UploadImages');
         },
         filename: function (req, res, cb) {
@@ -81,18 +80,18 @@ var storage = multer.diskStorage(
             str += " " + Image;
         }
     }
-    );
-    var upload = multer({ storage: storage });
-    
-    router.get("/vehicleAttach2", indexRouter.VehicleAttach2);
-    router.post("/vehicleAttach2", upload.array('Image', 6), async (req, res) => {
-        try {
-            
-            str = str.trim();
-            let arr = str.split(" ")
-            str = '';
-            
-            const Attachvehicles = new Attachdetail({
+);
+var upload = multer({ storage: storage });
+
+router.get("/vehicleAttach2", indexRouter.VehicleAttach2);
+router.post("/vehicleAttach2", upload.array('Image', 6), async (req, res) => {
+    try {
+
+        str = str.trim();
+        let arr = str.split(" ")
+        str = '';
+
+        const Attachvehicles = new Attachdetail({
             ownerName: ownername,
             driverName: drivername,
             adharNumber: aadharnumber,
@@ -118,103 +117,108 @@ var storage = multer.diskStorage(
 });
 router.get("/userList", (req, res) => {
     Mob = Mobile
-    
-    Userregister.find({ mobile: Mob })
-    .then((x) => {
 
-        res.render("user-module/userList", { x });
-    }).catch((err) => {
-        res.status(400).send("<h1>Something Went Wrong..........</h1>");
-    })
+    Userregister.find({ mobile: Mob })
+        .then((x) => {
+
+            res.render("user-module/userList", { x });
+        }).catch((err) => {
+            res.status(400).send("<h1>Something Went Wrong..........</h1>");
+        })
 })
 router.get("/order", (req, res) => {
-    
+
     Attachdetail.findOne({ mobile: Mobile })
-    .then((data) => {
-        if (data) {
-            Deliverydetail.find({
-                
-            }).then((x) => {
-                // console.log(x)
-                
-                        // console.log(.getUTCDate());
-                        if (x.length != 0)
-                            res.render("user-module/order", { x });
-                        else
+        .then((data) => {
+            if (data) {
+                Deliverydetail.find({
+
+                }).then((x) => {
+                    console.log(x)
+
+                    // console.log(.getUTCDate());
+                    if (x.length != 0) {
+                        // res.send({data})
+                        res.render("user-module/order", { x });
+                    }
+                    else
                         res.render("user-module/NoorderStatus")
                 }).catch((err) => {
                     res.status(400).send("<h1>Something Went Wrong..........</h1>");
                 })
             }
             else
-            res.render("user-module/ordernot")
+                res.render("user-module/ordernot")
         }).catch((y) => {
             res.status(400).send("<h1>Something Went Wrong..........</h1>");
         })
+})
+router.post("/order", async (req, res) => {
+
+    Driver = await Attachdetail.findOne({
+        mobile: Mobile
     })
-    router.post("/order", async (req, res) => {
-        
-        Driver = await Attachdetail.findOne({
-            mobile: Mobile
+    console.log(Driver)
+    try {
+        const Requestedorder = new RequestedOrder({
+            drivername: Driver.driverName,
+            driverNum: Mobile,
+            price: req.body.price,
+            vehicleNumber: Driver.vehicleNumber,
+            vehicleType: Driver.vehicleType,
+            userMob: Mobe
         })
-        console.log(Driver)
-        try {
-            const Requestedorder = new RequestedOrder({
-                drivername: Driver.driverName,
-                driverNum: Mobile,
-                price: req.body.price,
-                vehicleNumber: Driver.vehicleNumber,
-                vehicleType: Driver.vehicleType,
-                userMob: Mobe
-            })
-            const registeddelivery = await Requestedorder.save();
-            
-            res.status(201).render("user-module/index");
-        }
-        catch (error) {
-            res.status(400).send("<h1>Something Went Wrong..........</h1>");
-        }
-    })
-    //-------------------------
-    router.get("/orderStatus", (req, res) => {
-        
-        RequestedOrder.find({ userMob: Mobile })
+        const registeddelivery = await Requestedorder.save();
+
+        res.status(201).render("user-module/index");
+    }
+    catch (error) {
+        res.status(400).send("<h1>Something Went Wrong..........</h1>");
+    }
+})
+//-------------------------
+router.get("/orderStatus", (req, res) => {
+
+    RequestedOrder.find({ userMob: Mobile })
         .then((x) => {
             // console.log(x)
             if (x.length != 0)
-            res.render("user-module/orderStatus", { x });
+                res.render("user-module/orderStatus", { x });
             else
-            res.send("no order");
-         
+                res.render("user-module/NoorderStatus");
+
         }).catch((err) => {
             res.status(400).send("<h1>Something Went Wrong..........</h1>");
         })
-    })
+})
 
 //----------User can see their Status of Order---------//
 router.post("/orderStatus", async (req, res) => {
-        
-        Data = await RequestedOrder.findOne({
-            userMob: Mobile,
-            driverNum: Mobe
-        })
-        
-        try {
-            const Acceptorder = new AcceptedOrder({
-                drivername: Data.drivername,
-                driverNum: Data.driverNum,
-                price: Data.price,
-                vehicleNumber: Data.vehicleNumber,
-                vehicleType: Data.vehicleType,
+
+    Data = await RequestedOrder.findOne({
+        userMob: Mobile,
+        driverNum: Mobe
+    })
+
+    try {
+        const Acceptorder = new AcceptedOrder({
+            drivername: Data.drivername,
+            driverNum: Data.driverNum,
+            price: Data.price,
+            vehicleNumber: Data.vehicleNumber,
+            vehicleType: Data.vehicleType,
             userMob: Data.userMob
         })
         const registeddelivery = await Acceptorder.save();
         User_detail = await Deliverydetail.findOne({ mobile: Data.userMob })
         let msg = "customer name:- " + User_detail.user + ", Pick-up Location:- " + User_detail.pickuplocation + ", Pick-up Contact:- " + User_detail.pickUpcontact + ", delivery Location:- " + User_detail.deliverylocation + ", destination contact:- " + User_detail.destinationcontact + ", Pick-up Date:- " + User_detail.pickupdate
-        
+
         sendMsg(msg, Mobe);
-        msg="Driver name:- "+ Data.drivername+", VehicleNumber:- " +Data.vehicleNumber+", Driver Number:- "+Data.driverNum;
-        sendMsg(msg, Data.userMob);
+        setTimeout(() => {
+
+            msg = "Driver name:- " + Data.drivername + ", VehicleNumber:- " + Data.vehicleNumber + ", Driver Number:- " + Data.driverNum;
+            sendMsg(msg, Data.userMob);
+        }, 9000);
         res.status(201).render("user-module/index");
     }
     catch (error) {
